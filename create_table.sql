@@ -1,3 +1,4 @@
+
 CREATE TABLE Patient
 (
     PatientID      INT PRIMARY KEY,
