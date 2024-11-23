@@ -1,5 +1,25 @@
-CREATE TABLE Patient
-(
+DROP DATABASE IF EXISTS HospitalManagementSystem;
+CREATE DATABASE HospitalManagementSystem;
+use HospitalManagementSystem;
+
+CREATE TABLE Insurance (
+    InsuranceID     INT PRIMARY KEY,
+    Name            VARCHAR(100) NOT NULL,
+    Provider        VARCHAR(100) NOT NULL,
+    ContactInfo     VARCHAR(100),
+    PolicyNumber    VARCHAR(100),
+    CoverageDetails TEXT
+);
+
+CREATE TABLE Doctor (
+    DoctorID    INT PRIMARY KEY,
+    Name        VARCHAR(100) NOT NULL,
+    Specialty   VARCHAR(100),
+    PhoneNumber VARCHAR(10),
+    Email       VARCHAR(50)
+);
+
+CREATE TABLE Patient (
     PatientID      INT PRIMARY KEY,
     Name           VARCHAR(100) NOT NULL,
     DOB            DATE         NOT NULL,
@@ -11,17 +31,7 @@ CREATE TABLE Patient
     FOREIGN KEY (PrimaryDoctor) REFERENCES Doctor (DoctorID)
 );
 
-CREATE TABLE Doctor
-(
-    DoctorID    INT PRIMARY KEY,
-    Name        VARCHAR(100) NOT NULL,
-    Specialty   VARCHAR(100),
-    PhoneNumber VARCHAR(10),
-    Email       VARCHAR(50)
-);
-
-CREATE TABLE Appointment
-(
+CREATE TABLE Appointment (
     AppointmentID INT PRIMARY KEY,
     PatientID     INT  NOT NULL,
     DoctorID      INT  NOT NULL,
@@ -33,8 +43,16 @@ CREATE TABLE Appointment
     FOREIGN KEY (DoctorID) REFERENCES Doctor (DoctorID)
 );
 
-CREATE TABLE Prescription
-(
+CREATE TABLE Medication (
+    MedicationID INT PRIMARY KEY,
+    Name         VARCHAR(100) NOT NULL,
+    Description  TEXT,
+    Manufacturer VARCHAR(255),
+    SideEffects  TEXT,
+    Cost         DECIMAL(10, 2)
+);
+
+CREATE TABLE Prescription (
     PrescriptionID INT PRIMARY KEY,
     PatientID      INT         NOT NULL,
     DoctorID       INT         NOT NULL,
@@ -46,18 +64,7 @@ CREATE TABLE Prescription
     FOREIGN KEY (MedicationID) REFERENCES Medication (MedicationID)
 );
 
-CREATE TABLE Medication
-(
-    MedicationID INT PRIMARY KEY,
-    Name         VARCHAR(100) NOT NULL,
-    Description  TEXT,
-    Manufacturer VARCHAR(255),
-    SideEffects  TEXT,
-    Cost         DECIMAL(10, 2)
-);
-
-CREATE TABLE Billing
-(
+CREATE TABLE Billing (
     BillingID     INT PRIMARY KEY,
     AppointmentID INT,
     Amount        DECIMAL(10, 2)                     NOT NULL,
@@ -67,7 +74,7 @@ CREATE TABLE Billing
     FOREIGN KEY (PatientID) REFERENCES Patient (PatientID)
 );
 
-CREATE TABLE LabTests(
+CREATE TABLE LabTests (
     TestID    INT PRIMARY KEY,
     PatientID INT  NOT NULL,
     DoctorID  INT,
@@ -76,13 +83,4 @@ CREATE TABLE LabTests(
     Date      DATE NOT NULL,
     Result    TEXT,
     FOREIGN KEY (PatientID) REFERENCES Patient (PatientID)
-);
-
-CREATE TABLE Insurance(
-    InsuranceID     INT PRIMARY KEY,
-    Name            VARCHAR(100) NOT NULL,
-    Provider        VARCHAR(100) NOT NULL,
-    ContactInfo     VARCHAR(100),
-    PolicyNumber    VARCHAR(100),
-    CoverageDetails TEXT
 );
