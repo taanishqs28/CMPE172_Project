@@ -75,7 +75,7 @@ CREATE TABLE LabTests(
                    NOT NULL,
     Date      DATE NOT NULL,
     Result    TEXT,
-    FOREIGN KEY (PatientID) REFERENCES Patient (PatientID),
+    FOREIGN KEY (PatientID) REFERENCES Patient (PatientID)
 );
 
 CREATE TABLE Insurance(
