@@ -37,17 +37,9 @@ CREATE TABLE Appointment (
     DoctorID      INT  NOT NULL,
     Date          DATE NOT NULL,
     Time          TIME NOT NULL,
-    Reason        ENUM (
-        'RegularCheckup',
-        'Emergency',
-        'FollowUp',
-        'ChronicCondition',
-        'Screening',
-        'Vaccination',
-        'Prenatal',
-        'PT',
-        'Dental'
-        )NOT NULL DEFAULT ('RegularCheckup'),
+    Reason        ENUM ('RegularCheckup', 'Emergency', 'FollowUp', 'ChronicCondition',
+        'Screening', 'Vaccination', 'Prenatal', 'PT', 'Dental')
+                       NOT NULL DEFAULT ('RegularCheckup'),
     FOREIGN KEY (PatientID) REFERENCES Patient (PatientID),
     FOREIGN KEY (DoctorID) REFERENCES Doctor (DoctorID)
 );
@@ -76,8 +68,9 @@ CREATE TABLE Prescription (
 CREATE TABLE Billing (
     BillingID     INT PRIMARY KEY,
     AppointmentID INT,
-    Amount        DECIMAL(10, 2)                     NOT NULL,
-    Status        ENUM ('Paid', 'Unpaid', 'Pending') NOT NULL,
+    Amount        DECIMAL(10, 2) NOT NULL,
+    Status        ENUM ('Paid', 'Unpaid', 'Pending')
+                                 NOT NULL,
     PatientID     INT,
     FOREIGN KEY (AppointmentID) REFERENCES Appointment (AppointmentID),
     FOREIGN KEY (PatientID) REFERENCES Patient (PatientID)
@@ -87,18 +80,9 @@ CREATE TABLE LabTests (
     TestID    INT PRIMARY KEY,
     PatientID INT  NOT NULL,
     DoctorID  INT,
-    TestType  ENUM (
-        'Blood',
-        'Urine',
-        'X-Ray',
-        'MRI',
-        'CT',
-        'Ultrasound',
-        'EKG',
-        'InfectiousDisease',
-        'Cancer',
-        'Thyroid'
-        ) NOT NULL,
+    TestType  ENUM ('Blood', 'Urine', 'X-Ray', 'MRI', 'CT', 'Ultrasound',
+                    'EKG', 'InfectiousDisease', 'Cancer', 'Thyroid')
+                   NOT NULL,
     Date      DATE NOT NULL,
     Result    TEXT,
     FOREIGN KEY (PatientID) REFERENCES Patient (PatientID)

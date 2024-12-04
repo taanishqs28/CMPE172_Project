@@ -21,8 +21,7 @@ WHERE Prescription.PatientID = 1;
 
 -- 5. List all lab tests conducted by a specific doctor (e.g., DoctorID = 1)
 SELECT * FROM LabTests
-WHERE DoctorID = 1;
-
+WHERE DoctorID = 1 ORDER BY Date DESC;
 
 # 5 intermediate queries
 -- 1. Retrieve all patients along with their primary doctor's name and insurance details
