@@ -8,7 +8,6 @@ VALUES (1, 'Health Plan A', 'Provider A', '123-456-7890', 'POL123', 'Full covera
        (5, 'Health Plan E', 'Provider E', '777-888-9999', 'POL999', 'Comprehensive coverage'),
        (6, 'Health Plan F', 'Provider F', '666-555-4444', 'POL666', 'Partial coverage');
 
-
 INSERT INTO Doctor (DoctorID, Name, Specialty, PhoneNumber, Email)
 VALUES (1, 'Dr. Alice Johnson', 'Cardiology', '1112223333', 'alice.johnson@example.com'),
        (2, 'Dr. Bob Brown', 'Pediatrics', '4445556666', 'bob.brown@example.com');
