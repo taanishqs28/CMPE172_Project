@@ -73,6 +73,19 @@ VALUES (3, 3, 3, '2023-01-03', '11:00:00', 'FollowUp'),
        (9, 9, 9, '2023-01-09', '17:00:00', 'Prenatal'),
        (10, 10, 10, '2023-01-10', '18:00:00', 'PT');
 
+-- insert patients who have had more than one appointment with the same doctor
+INSERT INTO Appointment (AppointmentID, PatientID, DoctorID, Date, Time, Reason)
+VALUES (11, 3, 3, '2023-01-11', '09:00:00', 'RegularCheckup'),
+       (12, 3, 3, '2023-01-12', '10:00:00', 'FollowUp'),
+       (13, 4, 4, '2023-01-13', '11:00:00', 'RegularCheckup'),
+       (14, 4, 4, '2023-01-14', '12:00:00', 'FollowUp'),
+       (15, 5, 5, '2023-01-15', '13:00:00', 'Emergency'),
+       (16, 5, 5, '2023-01-16', '14:00:00', 'ChronicCondition'),
+       (17, 6, 6, '2023-01-17', '15:00:00', 'Screening'),
+       (18, 6, 6, '2023-01-18', '16:00:00', 'Vaccination'),
+       (19, 7, 7, '2023-01-19', '17:00:00', 'Prenatal'),
+       (20, 7, 7, '2023-01-20', '18:00:00', 'PT');
+
 -- Insert more dummy data into Medication table
 INSERT INTO Medication (MedicationID, Name, Description, Manufacturer, SideEffects, Cost)
 VALUES (3, 'Paracetamol', 'Pain reliever', 'Pharma Inc.', 'None', 3.00),
